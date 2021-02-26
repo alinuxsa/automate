@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   # push:
   schedule:
-    - cron: '10 8 * * *'
+    - cron: '20 8 * * *'
 
 jobs:
   send_msg:
