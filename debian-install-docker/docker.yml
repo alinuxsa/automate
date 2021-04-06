@@ -1,0 +1,5 @@
+---
+- hosts: "{{ dest_host | default('master') }}"
+  roles:
+  - docker
+

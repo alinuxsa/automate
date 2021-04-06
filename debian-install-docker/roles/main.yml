@@ -1,0 +1,31 @@
+- name: Add repository
+  apt:
+    name: "{{ packagesdep }}"
+    force_apt_get: yes
+    state: latest
+    update_cache: yes
+  vars:
+    packagesdep:
+      - lsb-release
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+      - gnupg2
+- name: Add apt signing
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+- name: Add docker official repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/debian {{ ansible_distribution_release }}  stable
+    state: present
+    update_cache: yes
+- name: Install Docker
+  apt:
+    name: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io 
+    state: latest
+    update_cache: true
+  tags: install
